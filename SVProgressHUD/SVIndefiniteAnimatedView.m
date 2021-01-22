@@ -59,11 +59,8 @@
         _indefiniteAnimatedLayer.path = smoothedPath.CGPath;
         
         CALayer *maskLayer = [CALayer layer];
-        
-        NSBundle *bundle = [NSBundle bundleForClass:[SVProgressHUD class]];
-        NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
-        NSBundle *imageBundle = [NSBundle bundleWithURL:url];
-        
+
+        NSBundle *imageBundle = SWIFTPM_MODULE_BUNDLE;
         NSString *path = [imageBundle pathForResource:@"angle-mask" ofType:@"png"];
         
         maskLayer.contents = (__bridge id)[[UIImage imageWithContentsOfFile:path] CGImage];
