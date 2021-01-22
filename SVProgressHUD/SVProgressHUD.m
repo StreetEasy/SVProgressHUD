@@ -416,7 +416,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         _shouldTintImages = YES;
 
         NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
-        NSURL *url = [bundle qURLForResource:@"SVProgressHUD" withExtension:@"bundle"];
+        NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
         NSBundle *imageBundle = [NSBundle bundleWithURL:url];
         
         _infoImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"info" ofType:@"png"]];
