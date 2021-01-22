@@ -414,9 +414,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
         
         _imageViewSize = CGSizeMake(28.0f, 28.0f);
         _shouldTintImages = YES;
-        
-        NSBundle *bundle = [NSBundle bundleForClass:[SVProgressHUD class]];
-        NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
+
+        NSBundle *bundle = SWIFTPM_MODULE_BUNDLE;
+        NSURL *url = [bundle qURLForResource:@"SVProgressHUD" withExtension:@"bundle"];
         NSBundle *imageBundle = [NSBundle bundleWithURL:url];
         
         _infoImage = [UIImage imageWithContentsOfFile:[imageBundle pathForResource:@"info" ofType:@"png"]];
@@ -890,7 +890,7 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
     [self positionHUD:nil];
     
     // Update accessibility as well as user interaction
-    // \n cause to read text twice so remove "\n" new line character before setting up accessiblity label
+    // \n cause to read text twice so remove "\n" new line character before setting up accessibility label
     NSString *accessibilityString = [[self.statusLabel.text componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]] componentsJoinedByString:@" "];
     if(self.defaultMaskType != SVProgressHUDMaskTypeNone) {
         self.controlView.userInteractionEnabled = YES;
