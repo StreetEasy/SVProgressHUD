@@ -7,6 +7,7 @@
 
 #import "SVIndefiniteAnimatedView.h"
 #import "SVProgressHUD.h"
+@import BundleHelper;
 
 @interface SVIndefiniteAnimatedView ()
 
@@ -60,7 +61,7 @@
         
         CALayer *maskLayer = [CALayer layer];
 
-        NSBundle *imageBundle = SWIFTPM_MODULE_BUNDLE;
+        NSBundle *imageBundle = BundleHelper.moduleBundle;
         NSString *path = [imageBundle pathForResource:@"angle-mask" ofType:@"png"];
         
         maskLayer.contents = (__bridge id)[[UIImage imageWithContentsOfFile:path] CGImage];

@@ -10,7 +10,13 @@ let package = Package(
     ],
     targets: [
         .target(name: "SVProgressHUD",
+                dependencies: ["BundleHelper"],
                 path: "SVProgressHUD",
-                publicHeadersPath: "")
+                publicHeadersPath: ""),
+        .target(name: "BundleHelper",
+                path: "BundleHelper",
+                resources: [
+                    .process("Resources")
+                ])
     ]
 )
