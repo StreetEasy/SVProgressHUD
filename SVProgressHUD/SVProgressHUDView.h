@@ -39,7 +39,7 @@ typedef NS_ENUM(NSUInteger, SVProgressHUDAnimationType) {
 typedef void (^SVProgressHUDShowCompletion)(void);
 typedef void (^SVProgressHUDDismissCompletion)(void);
 
-@interface SVProgressHUD : UIView
+@interface SVProgressHUDView : UIView
 
 #pragma mark - Customization
 

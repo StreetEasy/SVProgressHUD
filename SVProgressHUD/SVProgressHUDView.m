@@ -9,7 +9,7 @@
 #error SVProgressHUD is ARC only. Either turn on ARC for the project or use -fobjc-arc flag
 #endif
 
-#import "SVProgressHUD.h"
+#import "SVProgressHUDView.h"
 #import "SVIndefiniteAnimatedView.h"
 #import "SVProgressAnimatedView.h"
 #import "SVRadialGradientLayer.h"
@@ -31,7 +31,7 @@ static const CGFloat SVProgressHUDHorizontalSpacing = 12.0f;
 static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 
-@interface SVProgressHUD ()
+@interface SVProgressHUDView ()
 
 @property (nonatomic, strong) NSTimer *graceTimer;
 @property (nonatomic, strong) NSTimer *fadeOutTimer;
@@ -60,14 +60,14 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 
 @end
 
-@implementation SVProgressHUD {
+@implementation SVProgressHUDView {
     BOOL _isInitializing;
 }
 
-+ (SVProgressHUD*)sharedView {
++ (SVProgressHUDView*)sharedView {
     static dispatch_once_t once;
     
-    static SVProgressHUD *sharedView;
+    static SVProgressHUDView *sharedView;
 #if !defined(SV_APP_EXTENSIONS)
     dispatch_once(&once, ^{ sharedView = [[self alloc] initWithFrame:[[[UIApplication sharedApplication] delegate] window].bounds]; });
 #else
@@ -758,9 +758,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 #pragma mark - Master show/dismiss methods
 
 - (void)showProgress:(float)progress status:(NSString*)status {
-    __weak SVProgressHUD *weakSelf = self;
+    __weak SVProgressHUDView *weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        __strong SVProgressHUD *strongSelf = weakSelf;
+        __strong SVProgressHUDView *strongSelf = weakSelf;
         if(strongSelf){
             if(strongSelf.fadeOutTimer) {
                 strongSelf.activityCount = 0;
@@ -838,9 +838,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 - (void)showImage:(UIImage*)image status:(NSString*)status duration:(NSTimeInterval)duration {
-    __weak SVProgressHUD *weakSelf = self;
+    __weak SVProgressHUDView *weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        __strong SVProgressHUD *strongSelf = weakSelf;
+        __strong SVProgressHUDView *strongSelf = weakSelf;
         if(strongSelf){
             // Stop timer
             strongSelf.fadeOutTimer = nil;
@@ -984,9 +984,9 @@ static const CGFloat SVProgressHUDLabelSpacing = 8.0f;
 }
 
 - (void)dismissWithDelay:(NSTimeInterval)delay completion:(SVProgressHUDDismissCompletion)completion {
-    __weak SVProgressHUD *weakSelf = self;
+    __weak SVProgressHUDView *weakSelf = self;
     [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-        __strong SVProgressHUD *strongSelf = weakSelf;
+        __strong SVProgressHUDView *strongSelf = weakSelf;
         if(strongSelf){
             
             // Post notification to inform user
